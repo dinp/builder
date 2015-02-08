@@ -1,0 +1,12 @@
+#!/bin/bash
+
+mkdir -p /opt/logs
+
+touch /opt/php/var/log/php-fpm.log
+touch /opt/nginx/logs/access.log
+touch /opt/nginx/logs/error.log
+
+sed -i -e "s/\$SCRIBE_IP/$SCRIBE_IP/g" /etc/supervisord.d/scribed.conf
+sed -i -e "s/\$APP_NAME/$APP_NAME/g" /etc/supervisord.d/scribed.conf
+
+supervisord -n -c /etc/supervisord.conf

@@ -1,0 +1,24 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>App</th>
+        <th>Version</th>
+        <th>Resume</th>
+        <th>Image</th>
+        <th>CreateAt</th>
+        <th>Operation</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{range .BuildHistory}}
+        <tr>
+            <td>{{.App}}</td>
+            <td>{{.Version}}</td>
+            <td>{{.Resume}}</td>
+            <td>{{.Image}}</td>
+            <td>{{dateformat .CreateAt "01-02 15:04"}}</td>
+            <td><a href="javascript:delete_history('{{.Id}}');"><span class="glyphicon glyphicon-remove"></span></a></td>
+        </tr>
+    {{end}}
+    </tbody>
+</table>

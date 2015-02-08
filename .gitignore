@@ -1,0 +1,13 @@
+*.log
+*.swp
+*.swo
+*.so
+/builder
+/paas-builder
+/builder.tar.gz
+.DS_Store
+/_tmp
+/t
+/_log
+/conf/app.conf
+

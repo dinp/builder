@@ -1,0 +1,49 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">填写以下信息build docker image</h3>
+    </div>
+    <div class="panel-body">
+
+
+        <form method="post" action="/build" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="app">app名称（最好填写你在PaaS中创建的app名称）:</label>
+                <input type="text" id="app" name="app" class="form-control" value="{{.O.App}}"/>
+            </div>
+
+            <div class="form-group">
+                <label for="version">app版本（比如10.04，将会作为最终的image的tag）:</label>
+                <input type="text" id="version" name="version" class="form-control" value="{{.O.Version}}"/>
+            </div>
+
+            <div class="form-group">
+                <label for="resume">备忘（强烈建议填写，否则容易忘记这个版本到底上了啥功能）:</label>
+                <input type="text" id="resume" name="resume" class="form-control" value="{{.O.Resume}}"/>
+            </div>
+
+            <div class="form-group">
+                <label for="base">from base image:</label>
+                <select id="base" name="base" class="form-control">
+                    {{range $index, $elem := .Mappings}}
+                    <option value="{{$index}}">{{$index}}</option>
+                    {{end}}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tarball">tar.gz包地址（e.g. http://10.5.4.3/path/to/bin.tar.gz，java的话是war包）：</label>
+                <input type="text" id="tarball" name="tarball" class="form-control" value="{{.O.Tarball}}"/>
+            </div>
+
+            <div class="form-group">
+                <label for="file">直接上传（强烈建议直接在上面给出tar.gz包地址，不推荐直接上传）:</label>
+                <input type="file" id="file" name="file" class="form-control"/>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Build</button>
+            <span style="color: red;">{{.Msg}}</span>
+        </form>
+
+
+    </div>
+</div>

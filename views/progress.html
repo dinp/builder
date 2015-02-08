@@ -1,0 +1,31 @@
+<div id="refresh" style="position: fixed; right: 10px; bottom: 10px;">
+    <a href="javascript:refresh();">
+        <img src="/static/img/refresh2.png" width="80" height="80">
+    </a>
+</div>
+<div class="alert alert-success" role="alert">the image will be: {{.Image}}</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><span id="status" style="color: blue;"></span></h3>
+    </div>
+    <div class="panel-body">
+    	<div id="log" style="font-family: 'Consolas', 'verdana', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono'"></div>
+    </div>
+</div>
+<a name="bottom"></a>
+<script>
+    function refresh() {
+        $.getJSON('/log/{{.Id}}', {}, function(json) {
+            if (json.msg.length > 0) {
+                $("#log").html(json.msg);
+                return;
+            }
+            $("#status").html(json.data.build.status);
+            $("#log").html(json.data.log);
+            location.href = "/progress/{{.Id}}#bottom";
+        });
+    }
+    $(function() {
+        refresh();
+    });
+</script>

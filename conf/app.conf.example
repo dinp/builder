@@ -1,0 +1,24 @@
+appname = builder
+httpport = 7788
+runmode = prod
+
+dbuser = builder
+dbpass =
+dbhost = 127.0.0.1
+dbport = 3306
+dbname = builder
+
+tmpdir = ./_tmp
+logdir = ./_log
+
+# in minute
+buildtimeout = 15
+
+uicinternal = http://10.1.2.3:8081
+uicexternal = http://10.1.2.3:8081
+registry = 10.1.2.3:5000
+
+buildscript = ./docker_build.sh
+tplmapping = tomcat6=>tpls/tomcat6.tpl, tomcat7=>tpls/tomcat7.tpl, php=>tpls/php.tpl, gunicorn=>tpls/gunicorn.tpl, nodejs=>tpls/nodejs.tpl
+
+token = same-to-uic-token
